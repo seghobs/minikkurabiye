@@ -2,6 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    touch-action: manipulation;
 }
 
 body {
@@ -58,9 +66,9 @@ body {
 /* Cookie Animation */
 .cookie-animation {
     position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 40px;
+    width: clamp(120px, 30vw, 200px);
+    height: clamp(120px, 30vw, 200px);
+    margin: 0 auto 30px;
 }
 
 .cookie-main {
@@ -68,7 +76,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 5rem;
+    font-size: clamp(3rem, 8vw, 5rem);
     animation: cookieRotate 3s ease-in-out infinite;
     filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
 }
@@ -90,7 +98,7 @@ body {
 
 .cookie-orbit {
     position: absolute;
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 4vw, 2rem);
     animation: orbit 4s linear infinite;
 }
 
@@ -122,21 +130,22 @@ body {
     0% {
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg) translateX(clamp(60px, 15vw, 100px)) rotate(0deg);
     }
     100% {
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(-360deg);
+        transform: translate(-50%, -50%) rotate(360deg) translateX(clamp(60px, 15vw, 100px)) rotate(-360deg);
     }
 }
 
 /* Splash Title */
 .splash-title {
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
     font-weight: 700;
     margin-bottom: 30px;
     text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 0 20px;
 }
 
 .splash-title .letter {
@@ -181,8 +190,9 @@ body {
     justify-content: center;
     gap: 5px;
     margin-bottom: 20px;
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 3vw, 1.3rem);
     font-weight: 600;
+    padding: 0 20px;
 }
 
 .loading-dots span {
@@ -212,11 +222,11 @@ body {
 
 /* Progress Bar */
 .progress-bar {
-    width: 300px;
+    width: min(300px, 80vw);
     height: 8px;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
-    margin: 0 auto 30px;
+    margin: 0 auto 20px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -239,8 +249,10 @@ body {
 .splash-hearts {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    font-size: 2rem;
+    gap: clamp(8px, 3vw, 15px);
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    flex-wrap: wrap;
+    padding: 0 20px;
 }
 
 .splash-hearts span {
@@ -312,11 +324,14 @@ body.dark-mode .custom-modal .modal-body {
 /* Header Controls */
 .header-controls {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     z-index: 100;
+    flex-wrap: wrap;
+    max-width: 200px;
+    justify-content: flex-end;
 }
 
 .btn-dark-mode,
@@ -326,16 +341,17 @@ body.dark-mode .custom-modal .modal-body {
     background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
     border: none;
     color: white;
-    width: 45px;
-    height: 45px;
+    width: clamp(35px, 8vw, 45px);
+    height: clamp(35px, 8vw, 45px);
     border-radius: 50%;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .btn-dark-mode:hover,
@@ -449,8 +465,8 @@ header {
 /* Header Styles */
 .logo-container {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: clamp(100px, 20vw, 150px);
+    height: clamp(100px, 20vw, 150px);
     margin: 0 auto;
     border-radius: 50%;
     padding: 10px;
@@ -473,17 +489,19 @@ header {
 }
 
 .app-title {
-    font-size: 2.8rem;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
     font-weight: 700;
     color: #d63384;
     text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.4);
     margin-bottom: 10px;
+    padding: 0 10px;
 }
 
 .app-subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     color: #e83e8c;
     font-weight: 500;
+    padding: 0 10px;
 }
 
 /* Note Card Styles */
@@ -546,18 +564,27 @@ header {
     background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
     border: none;
     color: white;
-    padding: 12px 30px;
+    padding: clamp(10px, 3vw, 12px) clamp(20px, 5vw, 30px);
     border-radius: 20px;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    min-height: 44px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .btn-add:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
     background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(255, 105, 180, 0.3);
 }
 
 /* Filter Buttons */
@@ -870,54 +897,122 @@ header {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .app-title {
-        font-size: 2rem;
+    body {
+        padding-bottom: 30px;
     }
     
-    .logo-container {
-        width: 120px;
-        height: 120px;
+    .container-fluid {
+        padding: 0 10px;
     }
     
     .notes-container {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
     
     .filter-container {
-        gap: 8px;
+        gap: 6px;
     }
     
     .btn-filter {
-        padding: 8px 15px;
-        font-size: 0.9rem;
+        padding: 8px 12px;
+        font-size: 0.85rem;
     }
     
-    .calendar-card {
-        padding: 20px;
+    .calendar-card, .note-card, .stats-card {
+        padding: 15px;
+        margin-bottom: 20px;
     }
     
     .calendar-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .btn-calendar-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
     }
     
     .weekday {
-        font-size: 0.8rem;
-        padding: 5px;
+        font-size: 0.75rem;
+        padding: 5px 2px;
     }
     
     .calendar-day {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: 5px;
     }
     
     .cookie-float {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+    }
+    
+    .header-controls {
+        top: 5px;
+        right: 5px;
+        gap: 5px;
+    }
+    
+    .search-sort-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-box {
+        min-width: 100%;
+    }
+    
+    .sort-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .note-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .custom-input, .search-input, .sort-select {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .calendar-days {
+        gap: 5px;
+    }
+    
+    .note-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn-action {
+        width: 100%;
+    }
+    
+    .filter-container {
+        gap: 5px;
+    }
+    
+    .btn-filter {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container-fluid {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .notes-container {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
